@@ -104,8 +104,9 @@ done
 ## exit script if there are any missing dependencies or configuration files
 [[ ${INIT_ERROR} ]] && exit 1
 
-:: Starting Warden
-# den svc up
+:: Starting Den
+den svc up
+
 if [[ ! -f ~/.den/ssl/certs/${TRAEFIK_DOMAIN}.crt.pem ]]; then
     den sign-certificate ${TRAEFIK_DOMAIN}
 fi
