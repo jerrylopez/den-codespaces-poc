@@ -132,9 +132,19 @@ if [[ ${DB_IMPORT} ]]; then
   pv "${DB_DUMP}" | gunzip -c | den db import
 fi 
 
+:: Configuring application
+den env exec -T php-fpm ln -fsn env.php.den.php app/etc/env.php
+den env exec -T php-fpm bin/magento cache:flush -q
 den env exec -T php-fpm bin/magento app:config:import
 den env exec -T php-fpm bin/magento config:set -q web/unsecure/base_url ${URL_FRONT}
 den env exec -T php-fpm bin/magento config:set -q web/secure/base_url ${URL_FRONT}
+
+:: bin/magento setup:db-schema:upgrade
+den env exec -T php-fpm php -d memory_limit=-1 bin/magento setup:db-schema:upgrade
+
+:: bin/magento setup:db-data:upgrade
+den env exec -T php-fpm php -d memory_limit=-1 bin/magento setup:db-data:upgrade
+
 
 :: Flushing cache
 den env exec -T php-fpm bin/magento cache:flush
