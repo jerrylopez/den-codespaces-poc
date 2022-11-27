@@ -1,0 +1,13 @@
+diff --git a/vendor/magento/module-store/Model/BaseUrlChecker.php b/vendor/magento/module-store/Model/BaseUrlChecker.php
+index 0801490..6fc3951 100644
+--- a/vendor/magento/module-store/Model/BaseUrlChecker.php
++++ b/vendor/magento/module-store/Model/BaseUrlChecker.php
+@@ -39,7 +39,7 @@ class BaseUrlChecker
+     {
+         $requestUri = $request->getRequestUri() ? $request->getRequestUri() : '/';
+         $isValidSchema = !isset($uri['scheme']) || $uri['scheme'] === $request->getScheme();
+-        $isValidHost = !isset($uri['host']) || $uri['host'] === $request->getHttpHost();
++        $isValidHost = !isset($uri['host']) || $uri['host'] === $request->getHttpHost() || $uri['host'] === $request->getServer('HTTP_X_FORWARDED_HOST');
+         $isValidPath = !isset($uri['path']) || strpos($requestUri, (string) $uri['path']) !== false;
+         return $isValidSchema && $isValidHost && $isValidPath;
+     }

@@ -10,16 +10,18 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "laminas/laminas-dependency-plugin": true,
-            "magento/*": true
+            "magento/*": true,
+            "cweagans/composer-patches": true
         },
         "preferred-install": "dist",
         "sort-packages": true
     },
     "version": "2.4.5-p1",
     "require": {
-        "magento/product-community-edition": "2.4.5-p1",
+        "cweagans/composer-patches": "^1.7",
+        "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",
-        "magento/composer-dependency-version-audit-plugin": "~0.1"
+        "magento/product-community-edition": "2.4.5-p1"
     },
     "autoload": {
         "exclude-from-classmap": [
@@ -87,7 +89,11 @@
         }
     ],
     "extra": {
-        "magento-force": "override"
+        "magento-force": "override",
+        "patches": {
+            "magento/module-store": {
+                "Adds X-Forwarded-Host to host validation": "patches/codespaces-http-host.patch"
+            }
+        }
     }
 }
-
