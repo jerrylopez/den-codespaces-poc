@@ -28,5 +28,6 @@ node_modules
 !/.warden
 !/.gitignore
 
+!/.env
 !/backfill
 !/backfill/magento-db.sql.gz
