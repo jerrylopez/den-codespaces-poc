@@ -71,7 +71,7 @@ if [[ $OSTYPE =~ ^darwin ]] && ! which mutagen 2>/dev/null >/dev/null && which b
 fi
 
 ## check for presence of host machine dependencies
-for DEP_NAME in den mutagen docker-compose pv; do
+for DEP_NAME in den mutagen docker-compose; do
   if [[ "${DEP_NAME}" = "mutagen" ]] && [[ ! $OSTYPE =~ ^darwin ]]; then
     continue
   fi
@@ -129,7 +129,7 @@ den env exec -T php-fpm composer install
 if [[ ${DB_IMPORT} ]]; then
   :: Importing Magento database
   den db connect -e 'drop database magento; create database magento;'
-  pv "${DB_DUMP}" | gunzip -c | den db import
+  gunzip -c "${DB_DUMP}" | den db import
 fi 
 
 :: Configuring application
