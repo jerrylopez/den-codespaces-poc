@@ -90,6 +90,11 @@
     ],
     "extra": {
         "magento-force": "override",
+        "magento-deploy-ignore": {
+            "*": [
+                "/.gitignore"
+            ]
+        },
         "patches": {
             "magento/module-store": {
                 "Adds X-Forwarded-Host to host validation": "patches/codespaces-http-host.patch"
