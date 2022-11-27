@@ -1,0 +1,6 @@
+version: "3.5"
+
+services:
+  php-fpm:
+    environment:
+      - "COMPOSER_AUTH=${COMPOSER_AUTH}"
