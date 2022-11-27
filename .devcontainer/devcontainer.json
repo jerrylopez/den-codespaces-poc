@@ -34,6 +34,12 @@
 		}
 	},
 
+	"hostRequirements": {
+		"cpus": 4,
+		"memory": "8gb",
+		"storage": "32gb" 
+	}
+
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "den bootstrap --db-dump ./magento-db.sql.gz",
 	// "postStartCommand": "den env start"
